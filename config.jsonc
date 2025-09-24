@@ -1,0 +1,98 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["custom/cpu", "custom/ram", "custom/gpu"],
+  "modules-center": ["clock#day", "clock#time", "clock#date"],
+  "modules-right": [
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "network",
+    "custom/power"
+  ],
+
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "tooltip": true,
+    "tooltip-format": "{:%H:%M:%S}"
+  },
+  
+  "clock#day": {
+    "format": "{:%A}",
+    "tooltip": false
+  },
+
+  "clock#date": {
+    "format": "{:%d/%m}",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": " muted",
+    "on-click": "pamixer -t",
+    "on-click-right": "~/.config/waybar/scripts/audio_switcher.sh",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "tooltip": true
+  },
+
+  "backlight": {
+    "format": " {percent}%",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": true
+  },
+
+  "battery": {
+    "bat": "BAT1",
+    "format": "{icon} {capacity}%",
+    "format-charging": "⚡ {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {capacity}%",
+    "interval": 30,
+    "states": {
+        "good": 80,
+        "warning": 30,
+        "critical": 15
+    },
+    "format-icons": ["", "", "", "", ""]
+  },
+
+
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname} - {ipaddr}",
+    "tooltip": true
+  },
+
+  "custom/power": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Cerrar sesión / Apagar / Reiniciar",
+    "on-click": "hyprctl dispatch exit",
+    "on-click-middle": "systemctl poweroff",
+    "on-click-right": "systemctl reboot"
+  },
+  
+  "custom/cpu": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
+    "interval": 2
+  },
+  
+  "custom/ram": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/ram_usage.sh",
+    "interval": 2
+  },
+  
+  "custom/gpu": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+    "interval": 5
+  }
+
+}
