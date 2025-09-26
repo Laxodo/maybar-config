@@ -5,3 +5,6 @@ It requires:
 - Pipewire
 - Nvidia-lts
 - Pamixer
+- Grim
+- Slurp
+- Wl-copy

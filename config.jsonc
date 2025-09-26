@@ -7,6 +7,7 @@
     "pulseaudio",
     "backlight",
     "battery",
+    "custom/screenshot",
     "network",
     "custom/power"
   ],
@@ -93,6 +94,13 @@
     "format": "{}",
     "exec": "~/.config/waybar/scripts/gpu_usage.sh",
     "interval": 5
+  },
+
+  "custom/screenshot":{
+    "format": "",
+    "on-click": "grim ~/screenshot.png",
+    "on-click-right": "grim -g '$(slurp)' - | wl-copy",
+    "interval": 3600
   }
 
 }
